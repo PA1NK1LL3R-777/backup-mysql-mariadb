@@ -1,7 +1,7 @@
 # BACKUP MYSQL OU MARIADB
 - Faça beckup do seu banco de dados localmente usando um script simples e funcional, evite perca de dados...
 
-Para utilizar basta baixar usando o comando:
+Para baixar o script basta usar o comando:
 
 ```bash
 wget https://raw.githubusercontent.com/PA1NK1LL3R-777/backup-mysql-mariadb/main/backup-mysql.sh
