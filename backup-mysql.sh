@@ -1,41 +1,41 @@
 #!/bin/bash
-#----------------------------------------
-# OPTIONS
-#----------------------------------------
-USER='mysql-username'       # MySQL User
-PASSWORD='mysql-password' # MySQL Password
-DAYS_TO_KEEP=5    # 0 to keep forever
-GZIP=0            # 1 = Compress
-BACKUP_PATH='/home/backup/mysql'
-#----------------------------------------
+# --------------------------------------
+# USUARIO  DO BANCO DE DADOS
+USER_DB='root'
+# SENHA DO BANCO DE DADOS
+SENHA_DB='Paink171@pain'
+# NOME DO BANCO DE DADOS
+NOME_BANCO='wps'
+# DATA DO BACKUP
+DATABKP=`date +%Y-%d-%m-%H_%M_%S`
+# APAGAR O BACKUP EM X DIAS
+DIAS_PARA_GUARDAR=5    # 0 Para ficar com backup para sempre.
+# DIRETORIO AONDE VAI FICAR O BACKUP
+DIR_BKP='/root/bkpdb'
+# FAZER COMPRESSAO DO BANCO DE DADOS?
+GZIP=0            # 1 = Mude o 0 para 1 caso queira comprimir o banco de dados em GZIP
 
-# Create the backup folder
-if [ ! -d $BACKUP_PATH ]; then
-  mkdir -p $BACKUP_PATH
+# --------------------------------------
+
+# Criando a pasta do backup, caso nao esteja criada
+
+if [ ! -d $DIR_BKP ]; then
+  mkdir -p $DIR_BKP
 fi
 
-# Get list of database names
-databases=`mysql -u $USER -p$PASSWORD -e "SHOW DATABASES;" | tr -d "|" | grep -v Database`
+# SCRIPT
 
-for db in $databases; do
+if [ "$GZIP" -eq 0 ] ; then
+   echo "Fazendo backup do banco de dados: $NOME_BANCO sem compactação" 
+   mysqldump -h 127.0.0.1 -u ${USER_DB} -p${SENHA_DB} -B ${NOME_BANCO} > ${DIR_BKP}/${NOME_BANCO}.${DATABKP}.sql 
+else
+   echo "Fazendo backup do banco de dados: $NOME_BANCO com compactação"
+   mysqldump -h 127.0.0.1 -u ${USER_DB} -p${SENHA_DB} -B ${NOME_BANCO} | gzip -c > ${DIR_BKP}/${NOME_BANCO}.${DATABKP}.sql.gz
+   fi
 
-  if [ $db == 'information_schema' ] || [ $db == 'performance_schema' ] || [ $db == 'mysql' ] || [ $db == 'sys' ]; then
-    echo "Skipping database: $db"
-    continue
-  fi
-  
-  date=$(date -I)
-  if [ "$GZIP" -eq 0 ] ; then
-    echo "Backing up database: $db without compression"      
-    mysqldump -u $USER -p$PASSWORD --databases $db > $BACKUP_PATH/$date-$db.sql
-  else
-    echo "Backing up database: $db with compression"
-    mysqldump -u $USER -p$PASSWORD --databases $db | gzip -c > $BACKUP_PATH/$date-$db.gz
-  fi
-done
+# Deletando o backup em X dias
 
-# Delete old backups
-if [ "$DAYS_TO_KEEP" -gt 0 ] ; then
-  echo "Deleting backups older than $DAYS_TO_KEEP days"
-  find $BACKUP_PATH/* -mtime +$DAYS_TO_KEEP -exec rm {} \;
+if [ "$DIAS_PARA_GUARDAR" -gt 0 ] ; then
+  echo "Excluindo backups anteriores a $DIAS_PARA_GUARDAR dias"
+  find $DIR_BKP/* -mtime +$DIAS_PARA_GUARDAR -exec rm {} \;
 fi
