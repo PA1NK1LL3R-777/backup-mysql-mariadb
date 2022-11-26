@@ -30,14 +30,20 @@ nano backup-mysql.sh
 Isso irar abrir o arquivo e você deverá editar essas linhas:
 
 ```bash
-USER='mysql-username'       # MySQL User
-PASSWORD='mysql-password' # MySQL Password
-DAYS_TO_KEEP=5    # 0 to keep forever
-GZIP=0            # 1 = Compress
-BACKUP_PATH='/home/backup/mysql'
+USER_DB='root'
+# SENHA DO BANCO DE DADOS
+SENHA_DB='Paink171@pain'
+# NOME DO BANCO DE DADOS
+NOME_BANCO='wps'
+# DATA DO BACKUP
+DATABKP=`date +%Y-%d-%m-%H_%M_%S`
+# APAGAR O BACKUP EM X DIAS
+DIAS_PARA_GUARDAR=5    # 0 Para ficar com backup para sempre.
+# DIRETORIO AONDE VAI FICAR O BACKUP
+DIR_BKP='/root/bkpdb'
+# FAZER COMPRESSAO DO BANCO DE DADOS?
+GZIP=0            # 1 = Mude o 0 para 1 caso queira comprimir o banco de dados em GZIP
 ```
-
-Apenas troque o "user", "password" e o "backup_path".
 
 # Dê permissão de execução para o script
 
