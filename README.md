@@ -70,7 +70,7 @@ crontab -e
 Você vai escolher a quantidade de vezes que o backup será feito, exemplo:
 
 ```bash
-00 14 * * * /usr/local/sbin/backup-completo.sh
+00 14 * * * /usr/local/sbin/backup-mysql.sh
 ```
 
 Nesse exemplo, o backup será feito uma vez por dia, as 2:00/14:00 PM.
