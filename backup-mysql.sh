@@ -1,6 +1,6 @@
 #!/bin/bash
 # --------------------------------------
-# USUARIO  DO BANCO DE DADOS
+# USUARIO DO BANCO DE DADOS
 USER_DB='root'
 # SENHA DO BANCO DE DADOS
 SENHA_DB='Paink171@pain'
