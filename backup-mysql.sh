@@ -13,7 +13,7 @@ DIAS_PARA_GUARDAR=5    # Mude o 5 Para 0 Para ficar com backup para sempre.
 # DIRETORIO AONDE VAI FICAR O BACKUP
 DIR_BKP='/root/bkpdb'
 # FAZER COMPRESSAO DO BANCO DE DADOS?
-GZIP=0            # 1 = Mude o 0 para 1 caso queira comprimir o banco de dados em GZIP
+GZIP=0            # Mude o 0 para 1 caso queira comprimir o banco de dados em GZIP
 
 # --------------------------------------
 
