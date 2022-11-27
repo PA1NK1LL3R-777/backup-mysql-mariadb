@@ -39,7 +39,7 @@ NOME_BANCO='wps'
 # DATA DO BACKUP
 DATABKP=`date +%Y-%d-%m-%H_%M_%S`
 # APAGAR O BACKUP EM X DIAS
-DIAS_PARA_GUARDAR=5    # 0 Para ficar com backup para sempre.
+DIAS_PARA_GUARDAR=5    # Mude o 5 Para 0 para ficar com backup para sempre.
 # DIRETORIO AONDE VAI FICAR O BACKUP
 DIR_BKP='/root/bkpdb'
 # FAZER COMPRESSAO DO BANCO DE DADOS?
