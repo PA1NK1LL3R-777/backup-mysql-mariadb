@@ -33,7 +33,7 @@ Isso irar abrir o arquivo e você deverá editar essas linhas:
 # USUARIO DO BANCO DE DADOS
 USER_DB='root'
 # SENHA DO BANCO DE DADOS
-SENHA_DB='Paink171@pain'
+SENHA_DB='passw@rd'
 # NOME DO BANCO DE DADOS
 NOME_BANCO='wps'
 # DATA DO BACKUP
